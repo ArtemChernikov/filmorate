@@ -21,21 +21,22 @@ public class FilmController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Film create(@Valid @RequestBody Film film) {
-        log.info("Create film: {}", film);
+        log.info("Добавляем фильм: {}", film);
         ValidateService.validateFilm(film);
         return filmRepository.save(film);
     }
 
     @PutMapping
     public Film update(@Valid @RequestBody Film film) {
-        log.info("Update film: {}", film);
+        log.info("Обновляем фильм: {}", film);
         ValidateService.validateFilm(film);
         return filmRepository.update(film);
     }
 
     @GetMapping
     public List<Film> findAll() {
-        log.info("Get all films");
-        return filmRepository.findAll();
+        List<Film> films = filmRepository.findAll();
+        log.info("Текущее количество фильмов: {}", films.size());
+        return films;
     }
 }

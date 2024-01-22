@@ -22,20 +22,20 @@ public class ValidateService {
     public static void validateFilm(Film film) {
         String name = film.getName();
         if (name == null || name.isBlank()) {
-            log.warn("Film name is empty: {}", film);
-            throw new ValidationException("Film name is empty or null.");
+            log.warn("Название фильма не заполнено: {}", film);
+            throw new ValidationException("Название фильма пустое.");
         }
         if (film.getDescription().length() > MAX_DESCRIPTION_FILM_LENGTH) {
-            log.warn("Film description max length is 200: {}", film);
-            throw new ValidationException("Film description max length must be 200");
+            log.warn("Максимальная длина описания 200 символов: {}", film);
+            throw new ValidationException("Максимальная длина описания 200 символов");
         }
         if (film.getReleaseDate().isBefore(LocalDate.of(1895, 12, 28))) {
-            log.warn("Film release date is before 28.12.1895: {}", film);
-            throw new ValidationException("Film release date is before 28.12.1895");
+            log.warn("Дата производства фильма не может быть раньше чем 28.12.1895 г.: {}", film);
+            throw new ValidationException("Дата производства фильма не может быть раньше чем 28.12.1895 г.");
         }
         if (film.getDuration() < 0) {
-            log.warn("Film duration is negative: {}", film);
-            throw new ValidationException("Film duration is negative");
+            log.warn("Продолжительность фильма не может быть отрицательной: {}", film);
+            throw new ValidationException("Продолжительность фильма не может быть отрицательной");
         }
     }
 
@@ -44,20 +44,20 @@ public class ValidateService {
         String login = user.getLogin();
         String name = user.getName();
         if (email == null || email.isBlank() || !email.contains("@")) {
-            log.warn("Not correct user's email: {}", user);
-            throw new ValidationException("Not correct user's email.");
+            log.warn("Некорректный email адрес: {}", user);
+            throw new ValidationException("Некорректный email адрес.");
         }
         if (login == null || login.isBlank() || login.contains(" ")) {
-            log.warn("Not correct user's login: {}", user);
-            throw new ValidationException("Not correct user's login.");
+            log.warn("Некорректный логин пользователя: {}", user);
+            throw new ValidationException("Некорректный логин пользователя.");
         }
         if (name == null || name.isBlank()) {
-            log.warn("User's name is empty: {}", user);
+            log.warn("Имя пользователя не заполнено: {}", user);
             user.setName(login);
         }
         if (user.getBirthday().isAfter(LocalDate.now())) {
-            log.warn("Birthday is after: {}", user);
-            throw new ValidationException("Birthday is after.");
+            log.warn("День рождения не может быть позже текущей даты: {}", user);
+            throw new ValidationException("День рождения не может быть позже текущей даты.");
         }
     }
 }

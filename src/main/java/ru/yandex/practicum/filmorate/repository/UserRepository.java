@@ -35,7 +35,7 @@ public class UserRepository {
         Long id = user.getId();
         if (users.containsKey(id)) {
             users.put(id, user);
-            log.info("Update user: {}", user);
+            log.debug("Пользователь обновлен: {}", user);
         } else {
             throw new IllegalArgumentException("User not exist");
         }

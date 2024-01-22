@@ -21,21 +21,22 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody User user) {
-        log.info("Create user: {}", user);
+        log.info("Создание нового пользователя: {}", user);
         ValidateService.validateUser(user);
         return userRepository.save(user);
     }
 
     @PutMapping
     public User update(@Valid @RequestBody User user) {
-        log.info("Update user: {}", user);
+        log.info("Обновление пользователя: {}", user);
         ValidateService.validateUser(user);
         return userRepository.update(user);
     }
 
     @GetMapping
     public List<User> findAll() {
-        log.info("Get all users");
+        List<User> users = userRepository.findAll();
+        log.info("Текущее количество пользователей: {}", users.size());
         return userRepository.findAll();
     }
 }

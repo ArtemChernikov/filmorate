@@ -35,9 +35,9 @@ public class FilmRepository {
         Long id = film.getId();
         if (films.containsKey(id)) {
             films.put(id, film);
-            log.info("Update film: {}", film);
+            log.debug("Фильм обновлен: {}", film);
         } else {
-            throw new IllegalArgumentException("Film not exist");
+            throw new IllegalArgumentException("Фильм не существует");
         }
         return film;
     }
