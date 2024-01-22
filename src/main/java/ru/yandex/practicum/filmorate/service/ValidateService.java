@@ -14,7 +14,6 @@ import java.time.LocalDate;
  */
 @Slf4j
 public class ValidateService {
-
     public static final Integer MAX_DESCRIPTION_FILM_LENGTH = 200;
 
     private ValidateService() {
